@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$timeflow-primary: mat-palette($mat-blue);
+$timeflow-accent: mat-palette($mat-blue, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$timeflow-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$timeflow-theme: mat-light-theme((
+  color: (
+    primary: $timeflow-primary,
+    accent: $timeflow-accent,
+    warn: $timeflow-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($timeflow-theme);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #383432;
+}
+
+.card {
+  display: block;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.mat-error {
+  display: block;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  font-size: .8em;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Override some theme color
+.mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #2196f3;
+}
+
+.home-selector {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mat-form-field.simple-input {
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
