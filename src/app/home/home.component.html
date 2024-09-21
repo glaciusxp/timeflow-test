@@ -1,0 +1,63 @@
+<mat-drawer-container class="home-drawer
+" [hasBackdrop]="false">
+  <mat-drawer #drawer mode="side" class="home-sidebar">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/app/users" (click)="drawer.toggle()">
+        <mat-icon>manage_accounts</mat-icon>
+        <span mat-line>Users</span>
+      </a>
+
+      <a mat-list-item routerLink="/app/reviews" (click)="drawer.toggle()">
+        <mat-icon>reviews</mat-icon>
+        <span mat-line>Reviews</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main">
+      <header>
+        <mat-toolbar color="primary">
+          <button mat-icon-button
+                  class="example-icon"
+                  aria-label="Example icon-button with menu icon"
+                  (click)="drawer.toggle()"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Timeflow Test</span>
+          <span class="spacer"></span>
+          <ng-template [ngIf]="loggedUser.loggedIn" [ngIfElse]="guest">
+            <button mat-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="User Opetions">
+              <mat-icon>person</mat-icon>
+              {{ loggedUser.username }}
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="loggedUser.logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+              </button>
+            </mat-menu>
+          </ng-template>
+          <ng-template #guest>
+            <button mat-button
+                    routerLink="/auth/login"
+            >
+              Login
+            </button>
+            <span class="small-text">or</span>
+            <button mat-button
+                    routerLink="/auth/signup"
+            >
+              Sign Up
+            </button>
+          </ng-template>
+        </mat-toolbar>
+      </header>
+      <section>
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

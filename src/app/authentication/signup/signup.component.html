@@ -1,0 +1,140 @@
+<section class="signup-page">
+  <div class="card mx-auto">
+    <h1>TimeFlow test</h1>
+    <h2>Sign Up</h2>
+    <form [formGroup]="signUpForm" (submit)="onSubmit()">
+      <!-- User Type -->
+      <mat-form-field appearance="outline">
+        <mat-label>User Type</mat-label>
+        <select matNativeControl formControlName="userType">
+          <option *ngFor="let opt of userTypes"
+                  [value]="opt.id"
+          >
+            {{opt.label}}
+          </option>
+        </select>
+        <mat-icon matPrefix>group</mat-icon>
+
+        <ng-template [ngIf]="signUpForm.get('userType').hasError('required') && signUpForm.get('userType').touched">
+          <mat-error>
+            Required Field
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" >
+        <mat-label>Username</mat-label>
+        <input formControlName="username"
+               matInput
+        >
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-icon matSuffix
+                  [class]="signUpForm.get('username').invalid ? 'error-text' : 'valid-text'"
+                  *ngIf="signUpForm.get('username').touched"
+        >
+          {{ signUpForm.get('username').invalid ? 'error' : 'check' }}
+        </mat-icon>
+        <ng-template [ngIf]="signUpForm.get('username').invalid && signUpForm.get('username').touched">
+          <mat-error *ngIf="signUpForm.get('username').hasError('required')">
+            {{ 'Required Field' }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('username').hasError('pattern')">
+            {{ 'Min: 5 characters. Only letter and number allowed.' }}
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- E-mail -->
+      <mat-form-field appearance="outline" >
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email"
+               matInput
+        >
+        <mat-icon matPrefix>alternate_email</mat-icon>
+        <ng-template [ngIf]="signUpForm.get('email').invalid && signUpForm.get('email').touched">
+          <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+            {{ 'Required Field' }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+            {{ 'Invalid E-mail.' }}
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="password"
+               [type]="hidePassword ? 'password' : 'text'"
+               matInput
+        >
+        <mat-icon matPrefix>lock</mat-icon>
+        <div class="password-suffix" matSuffix>
+          <mat-icon class="pointer"
+                    (click)="hidePassword = !hidePassword; $event.stopPropagation();">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+          <mat-icon [class]="signUpForm.get('password').invalid ? 'error-text' : 'valid-text'"
+                    *ngIf="signUpForm.get('username').touched"
+          >
+            {{ signUpForm.get('password').errors != null ? 'error' : 'check' }}
+          </mat-icon>
+        </div>
+
+        <ng-template [ngIf]="signUpForm.get('password').invalid && signUpForm.get('password').touched">
+          <mat-error *ngIf="signUpForm.get('password').hasError('required')">
+            {{ 'Required Field' }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('password').hasError('pattern')">
+            {{ 'Min: 8 characters. The password must contain at least one: uppecase letter, lowercase letter, number, special character.' }}
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input formControlName="confirmPassword"
+               [type]="hidePassword ? 'password' : 'text'"
+               matInput
+        >
+        <mat-icon matPrefix>lock</mat-icon>
+        <div class="password-suffix" matSuffix>
+          <mat-icon class="pointer"
+                    (click)="hideConfirmPassword = !hideConfirmPassword; $event.stopPropagation();">
+            {{hideConfirmPassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+          <mat-icon [class]="signUpForm.get('confirmPassword').invalid ? 'error-text' : 'valid-text'"
+                    *ngIf="signUpForm.get('confirmPassword').touched"
+          >
+            {{ signUpForm.get('confirmPassword').invalid ? 'error' : 'check' }}
+          </mat-icon>
+        </div>
+
+        <ng-template [ngIf]="signUpForm.get('confirmPassword').invalid && signUpForm.get('confirmPassword').touched">
+          <mat-error *ngIf="signUpForm.get('confirmPassword').hasError('required')">
+            {{ 'Required Field' }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('confirmPassword').hasError('matcher')">
+            {{ 'Password doesn\'t match!' }}
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- Login Button -->
+      <button mat-flat-button
+              type="submit"
+              [disabled]="signUpForm.invalid"
+      >
+        Sign up
+      </button>
+      <div class="link-container">
+        <a routerLink="/auth/login">
+          Login
+        </a>
+      </div>
+
+    </form>
+  </div>
+</section>

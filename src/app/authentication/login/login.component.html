@@ -1,0 +1,66 @@
+<section class="login-page">
+  <div class="card mx-auto">
+    <h1>TimeFlow test</h1>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+
+      <!-- User Type -->
+      <mat-form-field appearance="outline">
+        <mat-label>User Type</mat-label>
+        <select matNativeControl
+                formControlName="userType">
+          <option *ngFor="let opt of userTypes"
+                  [value]="opt.id"
+          >
+            {{opt.label}}
+          </option>
+        </select>
+        <mat-icon matPrefix>group</mat-icon>
+
+        <ng-template [ngIf]="loginForm.get('userType').hasError('required') &&
+                             loginForm.get('userType').touched
+        ">
+          <mat-error>
+            Required Field
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" >
+        <mat-label>Username</mat-label>
+        <input formControlName="username"
+               matInput
+        >
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="password"
+               [type]="hidePassword ? 'password' : 'text'"
+               matInput
+        >
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-icon matSuffix class="pointer"
+                  (click)="hidePassword = !hidePassword; $event.stopPropagation();">
+          {{hidePassword ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+      </mat-form-field>
+
+      <!-- Login Button -->
+      <button mat-flat-button
+              type="submit"
+              [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+      <div class="link-container">
+        <a routerLink="/auth/signup">
+          Sign up
+        </a>
+      </div>
+    </form>
+  </div>
+</section>

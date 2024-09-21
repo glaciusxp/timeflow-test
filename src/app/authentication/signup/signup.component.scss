@@ -1,0 +1,80 @@
+.signup-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/images/login-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #303030;
+}
+
+.card {
+  width: min(100%, 30rem);
+  min-height: 80vh;
+  max-height: 100vh;
+  border-radius: 2rem;
+  background-color: rgba(247, 251, 255, .9);
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, .5);
+  border: 1px solid #3492eb;
+  overflow: hidden;
+
+  &>h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    flex: 0 0 auto;
+    padding: 3rem 0;
+    font-weight: bold;
+  }
+  &>h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    flex: 0 0 auto;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  &>form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex: 1;
+    gap: 1rem;
+    overflow: auto;
+  }
+}
+
+.error-text {
+  color: #ff5252;
+}
+.valid-text {
+  color: #3c8a3c;
+}
+
+.password-suffix {
+  display: inline-flex;
+  gap: .5rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.link-container {
+  margin: 1rem 0;
+  text-align: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #2196f3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
