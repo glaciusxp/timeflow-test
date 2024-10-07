@@ -7,7 +7,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Rossi Mario',
     username: 'rossi.mario',
     email: 'mario.rossi@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '2',
@@ -21,7 +21,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Verdi Anna',
     username: 'verdi.anna',
     email: 'anna.verdi@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '4',
@@ -35,7 +35,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Gialli Sara',
     username: 'gialli.sara',
     email: 'sara.gialli@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '6',
@@ -49,7 +49,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Grassi Elena',
     username: 'grassi.elena',
     email: 'elena.grassi@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '8',
@@ -63,7 +63,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Conti Chiara',
     username: 'conti.chiara',
     email: 'chiara.conti@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '10',
@@ -77,7 +77,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Gallo Francesca',
     username: 'gallo.francesca',
     email: 'francesca.gallo@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '12',
@@ -91,7 +91,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Pellegrini Laura',
     username: 'pellegrini.laura',
     email: 'laura.pellegrini@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '14',
@@ -105,7 +105,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Rinaldi Claudia',
     username: 'rinaldi.claudia',
     email: 'claudia.rinaldi@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '16',
@@ -119,7 +119,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Longo Maria',
     username: 'longo.maria',
     email: 'maria.longo@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '18',
@@ -133,7 +133,7 @@ export const mockUsers: Array<User> = [
     fullName: 'Ferrari Giulia',
     username: 'ferrari.giulia',
     email: 'giulia.ferrari@example.com',
-    userType: 'user'
+    userType: 'customer'
   },
   {
     id: '20',
@@ -147,9 +147,9 @@ export const mockUsers: Array<User> = [
 export const mockSuppliers: Array<SupplierReview> = [
   {
     id: '1',
-    fullName: 'Bianchi Marco',
-    username: 'bianchi.marco',
-    email: 'marco.bianchi@example.com',
+    fullName: 'Azienda Uno Srl',
+    username: 'azienda.uno',
+    email: 'info@aziendauno.com',
     reviews: [
       {
         rating: 4,
@@ -169,9 +169,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '2',
-    fullName: 'Neri Luca',
-    username: 'neri.luca',
-    email: 'luca.neri@example.com',
+    fullName: 'Azienda Due Srl',
+    username: 'azienda.due',
+    email: 'info@aziendadue.com',
     reviews: [
       {
         rating: 3,
@@ -198,9 +198,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '3',
-    fullName: 'Ruggeri Sara',
-    username: 'ruggeri.sara',
-    email: 'sara.ruggeri@example.com',
+    fullName: 'Azienda Tre Srl',
+    username: 'azienda.tre',
+    email: 'info@aziendatre.com',
     reviews: [
       {
         rating: 5,
@@ -234,9 +234,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '4',
-    fullName: 'Gallo Francesco',
-    username: 'gallo.francesco',
-    email: 'francesco.gallo@example.com',
+    fullName: 'Azienda Quattro Srl',
+    username: 'azienda.quattro',
+    email: 'info@aziendaquattro.com',
     reviews: [
       {
         rating: 1,
@@ -263,9 +263,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '5',
-    fullName: 'Conti Alessio',
-    username: 'conti.alessio',
-    email: 'alessio.conti@example.com',
+    fullName: 'Azienda Cinque Srl',
+    username: 'azienda.cinque',
+    email: 'info@aziendacinque.com',
     reviews: [
       {
         rating: 4,
@@ -299,9 +299,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '6',
-    fullName: 'Martini Giulia',
-    username: 'martini.giulia',
-    email: 'giulia.martini@example.com',
+    fullName: 'Azienda Sei Srl',
+    username: 'azienda.sei',
+    email: 'info@aziendasei.com',
     reviews: [
       {
         rating: 2,
@@ -321,9 +321,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '7',
-    fullName: 'Verdi Anna',
-    username: 'verdi.anna',
-    email: 'anna.verdi@example.com',
+    fullName: 'Azienda Sette Srl',
+    username: 'azienda.sette',
+    email: 'info@aziendasette.com',
     reviews: [
       {
         rating: 5,
@@ -350,9 +350,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '8',
-    fullName: 'Ruggeri Simone',
-    username: 'ruggeri.simone',
-    email: 'simone.ruggeri@example.com',
+    fullName: 'Azienda Otto Srl',
+    username: 'azienda.otto',
+    email: 'info@aziendaotto.com',
     reviews: [
       {
         rating: 1,
@@ -379,9 +379,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '9',
-    fullName: 'Gialli Marco',
-    username: 'gialli.marco',
-    email: 'marco.gialli@example.com',
+    fullName: 'Azienda Nove Srl',
+    username: 'azienda.nove',
+    email: 'info@aziendanove.com',
     reviews: [
       {
         rating: 5,
@@ -408,9 +408,9 @@ export const mockSuppliers: Array<SupplierReview> = [
   },
   {
     id: '10',
-    fullName: 'Fonti Paolo',
-    username: 'fonti.paolo',
-    email: 'paolo.fonti@example.com',
+    fullName: 'Azienda Dieci Srl',
+    username: 'azienda.dieci',
+    email: 'info@aziendadieci.com',
     reviews: [
       {
         rating: 3,

@@ -67,15 +67,6 @@ section>.users-content.table-view {
   .user-block-fullname { flex:1; }
   .user-block-email { flex:1; }
   .user-block-button { flex: 0 0 auto; }
-
-  .user-block-type:before {
-    content: ' (';
-    margin-left: 0.5rem;
-  }
-  .user-block-type:after {
-    content: ')';
-    margin-right: 0.5rem;
-  }
 }
 
 section>.users-content.grid-view {

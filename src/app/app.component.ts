@@ -17,11 +17,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Gestione centralizzata snackBar
     this.notificationService.notifier
       .subscribe((message) => {
         this.snackBar.open(message, 'x', {duration: 3000, verticalPosition: 'top', horizontalPosition: 'center'});
       });
 
+    // Inizializzazione database (IndexedDB)
     this.api.init().then(() => {
       console.log('DB Ready!');
     });

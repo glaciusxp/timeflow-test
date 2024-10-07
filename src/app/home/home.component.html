@@ -1,12 +1,21 @@
 <mat-drawer-container class="home-drawer
 " [hasBackdrop]="false">
   <mat-drawer #drawer mode="side" class="home-sidebar">
+    <!-- Nav Menu -->
     <mat-nav-list>
+      <!-- Istruzioni -->
+      <a mat-list-item routerLink="/app/" (click)="drawer.toggle()">
+        <mat-icon>help</mat-icon>
+        <span mat-line>Instructions</span>
+      </a>
+
+      <!-- Gestioni utenti -->
       <a mat-list-item routerLink="/app/users" (click)="drawer.toggle()">
         <mat-icon>manage_accounts</mat-icon>
         <span mat-line>Users</span>
       </a>
 
+      <!-- Recensioni -->
       <a mat-list-item routerLink="/app/reviews" (click)="drawer.toggle()">
         <mat-icon>reviews</mat-icon>
         <span mat-line>Reviews</span>
@@ -26,20 +35,31 @@
           </button>
           <span>Timeflow Test</span>
           <span class="spacer"></span>
+
+
+          <!-- Menu Utente -->
           <ng-template [ngIf]="loggedUser.loggedIn" [ngIfElse]="guest">
             <button mat-button
                     [matMenuTriggerFor]="menu"
                     aria-label="User Opetions">
               <mat-icon>person</mat-icon>
-              {{ loggedUser.username }}
+              {{ loggedUser.user ? loggedUser.user.fullName : '' }}
             </button>
             <mat-menu #menu="matMenu">
+              <!-- Logout -->
               <button mat-menu-item (click)="loggedUser.logout()">
                 <mat-icon>logout</mat-icon>
                 <span>Logout</span>
               </button>
+              <!-- Ripristino dati mock -->
+              <button mat-menu-item (click)="api.restoreData()">
+                <mat-icon>undo</mat-icon>
+                <span>Restore Data</span>
+              </button>
             </mat-menu>
           </ng-template>
+
+          <!-- Link di Login o Registrazione in caso di accesso non autenticato -->
           <ng-template #guest>
             <button mat-button
                     routerLink="/auth/login"

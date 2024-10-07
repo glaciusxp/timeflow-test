@@ -1,16 +1,16 @@
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {StorageValues} from '../utils/storage.enum';
-import {LocalStorage} from '@ngx-pwa/local-storage';
 
 @Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate {
 
-  constructor(private localStorage: LocalStorage) {}
+  constructor() {}
 
-  async canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot): Promise<boolean>  {
-    const token = await this.localStorage.getItem(StorageValues.jwtToken, {type: 'string'}).toPromise();
-    const user = await this.localStorage.getItem(StorageValues.username, {type: 'string'}).toPromise();
+  // Verifico che lo user e il token siano presenti per consentire l'accesso alle pagine di gestione utenti e recensioni
+  canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot): boolean  {
+    const token = localStorage.getItem(StorageValues.jwtToken);
+    const user = localStorage.getItem(StorageValues.userData);
 
     console.log('canActivate()', token, user);
 

@@ -1,12 +1,61 @@
-<!--
-<star-rating [starType]="'svg'"
-             [rating]="2.63"
-             size="medium"
-             numOfStars="5"
-             [showHalfStars]="true"
-             [readOnly]="true"
-             [hoverEnabled]="true"
-></star-rating>
- -->
-
-<p>reviews works!</p>
+<section>
+  <div class="review-header">
+    <h1>Customers Reviews</h1>
+  </div>
+  <div class="review-header">
+    <h1><strong>{{selectedSupplier ? selectedSupplier.fullName : ''}}</strong></h1>
+    <button mat-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Change Supplier"
+    >
+      <span>Change Supplier</span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item
+              *ngFor="let opt of suppliers"
+              (click)="onSelectSupplier(opt.id)"
+      >
+        <span class="supplier-menu-item" [ngClass]="{'selected': opt.id === selectedSupplier?.id}">{{opt.fullName}} ({{opt.username}})</span>
+      </button>
+    </mat-menu>
+  </div>
+  <div class="review-content" *ngIf="selectedSupplier != null">
+    <div class="review-supplier">
+      <button mat-mini-fab
+              class="review-new-btn"
+              color="primary"
+              aria-label="New Review"
+              matTooltip="New Review"
+              (click)="onNewReview()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <strong>{{reviews != null ? reviews.length : 0}} Reviews</strong>
+      <div class="review-supplier-rating">
+        <span>Rating: </span>
+        <review-stars [value]="selectedSupplier.rating" [readonly]="true"></review-stars>
+      </div>
+    </div>
+    <div class="review-list" *ngIf="reviews != null">
+      <ng-container *ngFor="let item of reviews">
+        <mat-card class="review-item">
+          <mat-card-header>
+            <mat-card-title>
+              <div class="review-item-header">
+                <span>{{ item.user }}</span>
+                <review-stars class="review-rating" [value]="item.rating" [readonly]="true"></review-stars>
+              </div>
+            </mat-card-title>
+            <mat-card-subtitle>{{ item.insertDate | date:'d MMM yyyy HH:mm' }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ item.info }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+  </div>
+</section>

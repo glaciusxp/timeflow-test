@@ -4,6 +4,7 @@ export class SupplierReview {
   username: string;
   email: string;
   reviews: Array<Review>;
+  rating?: number;
 }
 
 export class Review {

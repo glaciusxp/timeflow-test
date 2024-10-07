@@ -1,5 +1,6 @@
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from './custom-validators';
+import {User} from '../../models/user.model';
 
 export class FormGenerator {
 
@@ -83,5 +84,32 @@ export class FormGenerator {
         validators: CustomValidators.passwordMatch
       }
     );
+  }
+
+  public static buildUserForm(user: User): FormGroup {
+    if (user == null) {
+      user = new User();
+    }
+
+    return new FormGroup({
+      id: new FormControl(user.id),
+      userType: new FormControl(user.userType, [Validators.required]),
+      username: new FormControl(user.username, [Validators.required]),
+      fullName: new FormControl(user.fullName, [Validators.required]),
+      email: new FormControl(user.email, [Validators.required])
+    }
+    );
+  }
+
+  public static buildReviewForm(): FormGroup {
+    return new FormGroup({
+      rating: new FormControl(0, [Validators.required]),
+      info: new FormControl('', [Validators.required]),
+      // I seguenti campi saranno valorizzati nel servizio di salvataggio
+      // con i dati dell'utente loggato e la system date
+      user: new FormControl(null),
+      email: new FormControl(null),
+      insertDate: new FormControl(null)
+    });
   }
 }

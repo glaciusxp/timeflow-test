@@ -47,6 +47,11 @@
                   (click)="hidePassword = !hidePassword; $event.stopPropagation();">
           {{hidePassword ? 'visibility_off' : 'visibility'}}
         </mat-icon>
+        <ng-template [ngIf]="loginForm.hasError('login')">
+          <mat-error>
+            {{ loginForm.getError('login') }}
+          </mat-error>
+        </ng-template>
       </mat-form-field>
 
       <!-- Login Button -->
@@ -61,6 +66,7 @@
           Sign up
         </a>
       </div>
+      <div class="helper">Login with:<br />User Type = Customer<br />Username = rossi.mario<br />Password = [random password]</div>
     </form>
   </div>
 </section>

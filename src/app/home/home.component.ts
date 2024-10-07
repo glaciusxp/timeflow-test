@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LoggerUserService} from '../services/logger-user';
-import {Router} from '@angular/router';
+import {LoggedUserService} from '../services/logged-user.service';
+import {MockApiService} from '../services/mock-api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +8,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.scss'],
   host: {
   '[class.home-selector]': 'true'
-}
+  }
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public loggedUser: LoggerUserService,
-              private router: Router) { }
+  constructor(public loggedUser: LoggedUserService,
+              public api: MockApiService) { }
 
   ngOnInit(): void {}
 

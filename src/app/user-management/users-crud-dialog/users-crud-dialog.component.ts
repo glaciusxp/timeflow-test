@@ -1,41 +1,50 @@
+import {FormGroup, ValidationErrors} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
+import {MockApiService} from '../../services/mock-api.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {IdLabelModel} from '../../models/id-label.model';
+import {FormGenerator} from '../../authentication/utils/form-generator';
+
 @Component({
   selector: 'app-users-crud-dialog',
   templateUrl: './users-crud-dialog.component.html',
-  styles: [``]
+  styleUrls: ['./users-crud-dialog.component.scss']
 })
-export class UsersCrud implements OnInit {
+export class UsersCrudDialogComponent implements OnInit {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<UsersCrud>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              private api: MockApiService) {
+  userTypes: Array<IdLabelModel> = [];
+
+  constructor(public dialogRef: MatDialogRef<UsersCrudDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public user: User,
+              private api: MockApiService
+  ) {
   }
 
-  ngOnInit() {
-    if (this.data == null) {
-      this.data = new User();
-    }
-
-    this.form = new FormGroup({
-      id: new FormControl(this.data.id),
-      userType: new FormControl(this.data.userType, [Validators.required]),
-      username: new FormControl(this.data.username, [Validators.required]),
-      fullName: new FormControl(this.data.fullName, [Validators.required]),
-      email: new FormControl(this.data.email, [Validators.required])
-    });
+  ngOnInit(): void {
+    this.userForm = FormGenerator.buildUserForm(this.user);
+    this.loadUserTypes();
   }
 
   onSubmit(): void {
-    if (!this.form.valid) { return; }
+    if (!this.userForm.valid) { return; }
 
-    if (this.form.value.id == null) {
-      this.api.postInsertUser(this.form.value)
-        .then(() => {
-          this.dialogRef.close(true);
+    if (this.userForm.value.id == null) {
+      this.api.postInsertUser(this.userForm.value)
+        .then((isOk) => {
+          if (isOk) {
+            this.dialogRef.close(true);
+          } else {
+            const error: ValidationErrors = { exists: 'Username and/or Email already exists!' };
+            this.userForm.get('username').setErrors(error);
+            this.userForm.get('email').setErrors(error);
+            this.userForm.setErrors(error);
+          }
         });
     } else {
-      this.api.putUpdateUser(this.form.value)
+      this.api.putUpdateUser(this.userForm.value)
         .then((response) => {
           this.dialogRef.close(response);
         });
@@ -45,5 +54,9 @@ export class UsersCrud implements OnInit {
 
   onClose(): void {
     this.dialogRef.close(false);
+  }
+
+  private loadUserTypes(): void {
+    this.userTypes = this.api.getUserTypes();
   }
 }

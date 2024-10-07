@@ -1,15 +1,42 @@
 <h2 mat-dialog-title>
-  <ng-template [ngIf]="data != null">
-    {{ (data.id == null ? 'New User' : 'Edit User') }}
+  <ng-template [ngIf]="user != null">
+    {{ (user.id == null ? 'New User' : 'Edit User') }} | {{ user.username }}
   </ng-template>
 </h2>
-<mat-dialog-content>
+<mat-dialog-content class="user-crud-form-dialog">
   <form id="userCrud"
-        *ngIf="form != null"
-        [formGroup]="form"
+        class="user-crud-form"
+        *ngIf="userForm != null"
+        [formGroup]="userForm"
         (submit)="onSubmit()"
   >
-
+    <mat-form-field appearance="fill">
+      <mat-label>User Type</mat-label>
+      <mat-select formControlName="userType">
+        <mat-option *ngFor="let opt of userTypes"
+                [value]="opt.id"
+        >
+          {{opt.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email">
+      <ng-template [ngIf]="userForm.hasError('exists')">
+        <mat-error>
+          {{ userForm.getError('exists') }}
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
@@ -18,9 +45,11 @@
     Cancel
   </button>
   <button mat-button
+          color="primary"
           type="submit"
           form="userCrud"
-          (click)="onSubmit()">
-    Install
+          [disabled]="userForm.invalid"
+  >
+    Save
   </button>
 </mat-dialog-actions>

@@ -1,32 +1,60 @@
 <section>
  <div class="users-header">
-   <h1>Users Management</h1>
+   <h1>Users Management ({{users != null ? users.length : 0}})</h1>
 
    <div class="right-functions">
-     <button mat-mini-fab color="primary" aria-label="New User">
+     <button mat-mini-fab
+             color="primary"
+             aria-label="New User"
+             matTooltip="New User"
+             (click)="onNewUser()"
+     >
        <mat-icon>add</mat-icon>
      </button>
      <mat-form-field class="simple-input"
                      appearance="outline">
-       <mat-label>User Type</mat-label>
-       <select matNativeControl
-               [(ngModel)]="userType"
-               (ngModelChange)="onFilter()"
+       <mat-label>Sort by</mat-label>
+       <mat-select [(ngModel)]="sortField"
+                   (ngModelChange)="onSort()"
        >
-         <option *ngFor="let opt of userTypes"
+         <mat-option *ngFor="let opt of sortFields"
+                     [value]="opt.id"
+         >
+           {{opt.label}}
+         </mat-option>
+       </mat-select>
+       <mat-icon matPrefix>sort</mat-icon>
+     </mat-form-field>
+
+     <mat-button-toggle-group [(ngModel)]="sortDirection" (change)="onSort()">
+       <mat-button-toggle value="asc" aria-label="Ascending order" matTooltip="Ascending order">
+         ASC
+       </mat-button-toggle>
+       <mat-button-toggle value="desc" aria-label="Descending order" matTooltip="Descending order">
+         DESC
+       </mat-button-toggle>
+     </mat-button-toggle-group>
+
+     <mat-form-field class="simple-input"
+                     appearance="outline">
+       <mat-label>User Type Filter</mat-label>
+       <mat-select [(ngModel)]="userTypeFilter"
+                   (ngModelChange)="onFilter()"
+       >
+         <mat-option *ngFor="let opt of userTypes"
                  [value]="opt.id"
          >
            {{opt.label}}
-         </option>
-       </select>
+         </mat-option>
+       </mat-select>
        <mat-icon matPrefix>filter_alt</mat-icon>
      </mat-form-field>
 
      <mat-button-toggle-group [(ngModel)]="viewMode">
-       <mat-button-toggle value="table" aria-label="Table View">
+       <mat-button-toggle value="table" aria-label="Table View" matTooltip="Table View">
          <mat-icon>table_rows</mat-icon>
        </mat-button-toggle>
-       <mat-button-toggle value="grid" aria-label="Grid View">
+       <mat-button-toggle value="grid" aria-label="Grid View" matTooltip="Grid View">
          <mat-icon>grid_view</mat-icon>
        </mat-button-toggle>
      </mat-button-toggle-group>
@@ -37,22 +65,34 @@
   >
     <div class="user-block" *ngFor="let user of users">
       <div class="user-block-username">
-        <mat-icon class="user-block-icon">account_box</mat-icon> {{user.username}}
+        <mat-icon class="user-block-icon" matTooltip="Username">
+          account_box
+        </mat-icon> {{user.username}}
       </div>
       <div class="user-block-type">
         {{user.userType | titlecase}}
       </div>
       <div class="user-block-fullname">
-        <mat-icon class="user-block-icon">badge</mat-icon> {{user.fullName}}
+        <mat-icon class="user-block-icon" matTooltip="Full Name">badge</mat-icon> {{user.fullName}}
       </div>
       <div class="user-block-email">
-        <mat-icon class="user-block-icon">mail</mat-icon> {{user.email}}
+        <mat-icon class="user-block-icon" matTooltip="E-Mail">mail</mat-icon> {{user.email}}
       </div>
       <div class="user-block-button">
-        <button mat-mini-fab color="accent" aria-label="Edit">
-          <mat-icon>edit</mat-icon>
+        <button mat-mini-fab
+                color="accent"
+                aria-label="Edit"
+                matTooltip="Edit User"
+                (click)="onEditUser(user)"
+        >
+          <mat-icon >edit</mat-icon>
         </button>
-        <button mat-mini-fab color="warn" aria-label="Delete">
+        <button mat-mini-fab
+                color="warn"
+                aria-label="Delete"
+                matTooltip="Delete User"
+                (click)="onDeleteUser(user)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>

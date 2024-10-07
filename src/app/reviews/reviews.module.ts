@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReviewsComponent } from './reviews/reviews.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {AppCommonModule} from '../app-common/app-common.module';
+import { ReviewCrudDialogComponent } from './review-crud-dialog/review-crud-dialog.component';
 
 @NgModule({
-  declarations: [ReviewsComponent],
+  declarations: [ReviewsComponent, ReviewCrudDialogComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    AppCommonModule
   ]
 })
 export class ReviewsModule { }
