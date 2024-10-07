@@ -96,7 +96,7 @@ export class FormGenerator {
       userType: new FormControl(user.userType, [Validators.required]),
       username: new FormControl(user.username, [Validators.required]),
       fullName: new FormControl(user.fullName, [Validators.required]),
-      email: new FormControl(user.email, [Validators.required])
+      email: new FormControl(user.email, [Validators.required, Validators.email])
     }
     );
   }
