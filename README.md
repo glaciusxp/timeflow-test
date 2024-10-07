@@ -1,27 +1,33 @@
-# Timeflow
+# Timeflow TEST
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
+## Istruzioni
 
-## Development server
+### Autenticazione:
+In alto a destra si può decidere si autenticarsi con un utente già esistente oppure registrarsi con un nuovo utente.
+Utente già esistente è "rossi.mario". La password non è controllata, quindi si può inserire qualunque cosa.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Nel form di registrazione ci sono diversi controlli sui campi:
 
-## Code scaffolding
+- User Type: dropdown di selezione tipologia utente: Ci si può registrare come cliente o come fornitore. Campo obbligatorio.
+- Username: deve essere di almeno 5 caratteri o può contenere solo lettere e numeri.
+- Email: deve rispettare il formato di un indirizzo e-mail
+- Password: deve avere almeno 8 caratteri, tra cui: almeno una maiuscola, una minuscola, un numero e un carattere speciale.
+- Conferma Password: controllo di coerenza.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Funzionalità:
+Nel menu in alto a sinistra abbiamo le due pagine richieste nel test.
 
-## Build
+#### Users
+La gestione utente permette di visualizzare, modificare, aggiungere ed eliminare gli utenti.
+Sono state aggiunte le funzioni aggiuntive tra cui:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Ordinamento: si può ordinare per: Data inserimento, Username, E-mail, User Type, Full Name. Si può ordinare sia in ordine crescente che decrescente.
+- Filtro: si può filtrare per tipologia utente.
+- Layout: Si possono visualizzare gli utenti sia in modalità card che in modalità pseudo tabellare
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Reviews
+Permette la visualizzazione e l'inserimento di recensioni sui fornitori.
+Si seleziona il fornitori (pulsante Change Supplier) e si visualizzano le recensioni. L'inserimento della recensione permette di dare un voto da 1 a 5 tramite il classico sistema a stelle (componente creato "in casa")
+e scrivere una recensione testuale. Username e data vengono inseriti automaticamente in base all'utente loggato e il momento in cui viene salvata la recensione.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
